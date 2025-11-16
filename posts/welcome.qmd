@@ -1,0 +1,13 @@
+---
+title: "Welcome"
+description: "Welcome fellow wombats" 
+author: "Dinki"
+date: "11/16/2025"
+categories:
+  - news
+  - dinki
+  - code
+  - analysis
+---
+
+This exists
