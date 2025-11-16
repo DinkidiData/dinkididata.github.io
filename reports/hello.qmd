@@ -2,6 +2,7 @@
 title: "Quarto Basics"
 format:
   html:
+    toc: true
     code-fold: true
 jupyter: python3
 ---
