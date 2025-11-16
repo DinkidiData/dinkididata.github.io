@@ -2,3 +2,9 @@ project:
   type: website
   output-dir: docs
 theme: darkly
+website:
+  title: "dinki's data"
+  navbar:
+    right:
+      - text: "Reports"
+        href: reports/hello.qmd
