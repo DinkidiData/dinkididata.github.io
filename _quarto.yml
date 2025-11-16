@@ -6,5 +6,7 @@ website:
   title: "dinki's data"
   navbar:
     right:
+      - text: "Home"
+        href: reports/index.qmd
       - text: "Reports"
         href: reports/hello.qmd
