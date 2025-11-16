@@ -3,9 +3,11 @@ project:
   output-dir: docs
 theme: cosmo 
 website:
-  title: "dinki's data"
+  title: "Dinki Di Data"
   navbar:
     right:
+      - text: "About"
+        href: about.qmd
       - text: "Reports"
         href: reports/hello.qmd
 execute:

@@ -1,15 +1,17 @@
 ---
-title: "About"
+title: "About Dinki"
 image: profile.png
 about:
   template: jolla
   links:
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com
+    - icon: github 
+      text: Github 
+      href: https://github.com/dinkididata/dinkididata.github.io
     # (additional links excluded for brevity)
 ---
 
-## About this blog
+## About this little womblog
 
-This is the contents of the about page for my blog.
+I'm a wombat, I like data. There's a mountain of places with mountains of data trying to make you feel and think a certain way. The only thing I can claim is different about this little corner of the internet is that it is a cave, not a mountain... oh and it's completely open source, you can see all of the calculations that went into the findings presented here. Please open an issue over on github if you have corrections to make! Let's be concrete together.
+
+<3

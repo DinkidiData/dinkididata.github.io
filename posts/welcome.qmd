@@ -10,4 +10,4 @@ categories:
   - analysis
 ---
 
-This exists
+Honestly I'm not sure what else you need to know about me, but if you haven't seen it have a look over at [about](../about.html)
