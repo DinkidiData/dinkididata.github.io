@@ -1,0 +1,61 @@
+---
+title: "Untitled Weekly Report"
+date: "2024-01-01"
+categories: [data, analysis]
+image: image.png
+format:
+  html:
+    code-fold: false
+jupyter: python3
+---
+
+## The Hype
+
+[What is the news story?]
+
+## The Dig
+
+[Where is the data coming from?]
+**Data Source**: [Name of Source](URL)
+
+```{python}
+#| label: setup
+#| include: false
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Dinki Style
+sns.set_theme(style="whitegrid")
+```
+
+```{python}
+#| label: analysis
+#| echo: true
+
+# Load your data here
+# df = pd.read_csv(...)
+
+# Show the first few rows to be transparent
+# display(df.head())
+```
+
+## What We Found
+
+[Interpretation of the data]
+
+```{python}
+#| label: visualization
+#| echo: true
+
+# Create your plot here
+# plt.figure(figsize=(10, 6))
+# Remove this comment and add your code
+```
+
+## Conclusion
+
+[Sum up the findings without political bias.]
+
+<small>Found a bug in my burrow? Report it on GitHub.</small>

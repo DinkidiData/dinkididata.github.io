@@ -1,0 +1,84 @@
+---
+title: "Making Things: Is the Factory Humming?"
+date: "2026-01-19"
+categories: [news, data, economics]
+image: image.png
+format:
+  html:
+    code-fold: false
+jupyter: python3
+---
+
+## The Hype
+
+G'day folks! Dinki here.
+
+The news wires were humming this week like a cicada in summer with reports that US Industrial Production ticked up by 0.4% in December. It sounds decent, like finding a fresh patch of grass, but percentages without context are like a wombat without a burrow—exposed. Is this a real recovery or just a blip?
+
+## The Dig
+
+We went straight to the source: the Federal Reserve Bank of St. Louis (FRED). We grabbed the **Industrial Production: Total Index (INDPRO)**. This index measures the real output of all relevant establishments located in the United States.
+
+**Data Source**: [FRED Industrial Production Index (INDPRO)](https://fred.stlouisfed.org/series/INDPRO)
+
+```{python}
+#| label: setup
+#| include: false
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Dinki Style
+sns.set_theme(style="whitegrid")
+```
+
+```{python}
+#| label: analysis
+#| echo: true
+
+# Load the data
+# The data is in the source_data directory relative to this post
+df = pd.read_csv("../../source_data/2026-01-19-industrial-production/INDPRO.csv")
+
+# Clean up dates
+df['DATE'] = pd.to_datetime(df['observation_date'])
+df = df.rename(columns={'INDPRO': 'Industrial_Production'})
+
+# Let's filter to the last 10 years to see the modern context
+recent_df = df[df['DATE'] >= '2016-01-01']
+
+# Show the raw numbers (transparency!)
+display(recent_df.tail())
+```
+
+## What We Found
+
+When you look at the last decade, you can see the massive crater left by the 2020 lockdowns. Since then, we climbed back up, but we've been bouncing along a plateau for the last couple of years.
+
+The recent "0.4% increase" looks like a tiny wiggle on a very flat line.
+
+```{python}
+#| label: visualization
+#| echo: true
+
+plt.figure(figsize=(12, 6))
+sns.lineplot(data=recent_df, x='DATE', y='Industrial_Production', linewidth=2.5, color='#2c3e50')
+
+plt.title('US Industrial Production (2016 - Present)', fontsize=16, fontweight='bold')
+plt.xlabel('Year', fontsize=12)
+plt.ylabel('Index (2017=100)', fontsize=12)
+plt.axhline(y=recent_df['Industrial_Production'].max(), color='r', linestyle='--', alpha=0.5, label='Peak')
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+```
+
+## Conclusion
+
+The factories are running, but they aren't exactly sprinting. We are hovering near all-time highs, but unable to break out significantly above the levels we reached back in 2022. The 0.4% rise is positive, but in the grand scheme of things, it's just maintaining altitude.
+
+Hooroo for now!
+
+<small>Data don't lie, but sometimes they mumble. Correct me on GitHub if I misheard.</small>

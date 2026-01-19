@@ -1,0 +1,12 @@
+{
+  "hash": "62ed16ee87caff4d063491a441a89f23",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Untitled Weekly Report\"\ndate: \"2024-01-01\"\ncategories: [data, analysis]\nimage: image.png\nformat:\n  html:\n    code-fold: false\njupyter: python3\n---\n\n## The Hype\n\n[What is the news story?]\n\n## The Dig\n\n[Where is the data coming from?]\n**Data Source**: [Name of Source](URL)\n\n\n::: {#analysis .cell execution_count=2}\n``` {.python .cell-code}\n# Load your data here\n# df = pd.read_csv(...)\n\n# Show the first few rows to be transparent\n# display(df.head())\n```\n:::\n\n\n## What We Found\n\n[Interpretation of the data]\n\n::: {#visualization .cell execution_count=3}\n``` {.python .cell-code}\n# Create your plot here\n# plt.figure(figsize=(10, 6))\n# Remove this comment and add your code\n```\n:::\n\n\n## Conclusion\n\n[Sum up the findings without political bias.]\n\n<small>Found a bug in my burrow? Report it on GitHub.</small>\n\n",
+    "supporting": [
+      "weekly_report_files/figure-html"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

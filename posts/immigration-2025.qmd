@@ -1,0 +1,70 @@
+---
+title: "Immigration - 2025"
+description: "what's really going on?" 
+author: "Dinki"
+date: "11/16/2025"
+categories:
+  - news
+  - dinki
+  - code
+  - analysis
+draft: true
+format:
+  html:
+    toc: true
+    code-fold: true
+jupyter: python3
+---
+
+This will be a bit of data about immigration in 2025 
+
+```{python}
+#| label: data-explore
+#| fig-cap: "Exploring ABS immigration data (Excel)"
+# This cell loads the first ABS data cube and prints sheet names and a sample of the data.
+import pandas as pd
+excel_path = '../source_data/abs/All data cubes/34120DO001_201920.xls'
+xl = pd.ExcelFile(excel_path)
+print('Sheet names:', xl.sheet_names)
+# Load the first sheet as an example
+df = xl.parse(xl.sheet_names[0])
+display(df.head())
+
+# If you know the columns, you can plot them. Example (update col names as needed):
+# import matplotlib.pyplot as plt
+# df.plot(x='Year', y='Immigration', kind='line')
+# plt.title('Immigration Numbers Over Years')
+# plt.show()
+```
+
+```{python}
+#| label: fig-polar
+#| fig-cap: "A line plot on a polar axis"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+r = np.arange(0, 2, 0.01)
+theta = 4 * np.pi * r
+fig, ax = plt.subplots(
+  subplot_kw = {'projection': 'polar'} 
+)
+ax.plot(theta, r)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
+```
+
+# Inspect the first data table sheet
+```{python}
+#| label: data-table-1-1
+#| fig-cap: "Preview of Table_1.1 sheet (ABS data cube)"
+df_table = xl.parse('Table_1.1')
+display(df_table.head(10))
+```
+```{python}
+#| label: data-table-1-2
+#| fig-cap: "Preview of Table_1.1 sheet (ABS data cube)"
+df_table = xl.parse('Table_1.2')
+display(df_table.head(10))
+```
