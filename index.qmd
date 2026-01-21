@@ -11,5 +11,5 @@ page-layout: full
 title-block-banner: true
 ---
 
-This is a set of reports using real data.
+Hopefully as accurate as possible reports on stuff that's happening in the world...
 

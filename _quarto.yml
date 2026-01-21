@@ -1,7 +1,7 @@
 project:
   type: website
   output-dir: docs
-theme: cosmo 
+theme: journal 
 website:
   title: "Dinki Di Data"
   navbar:

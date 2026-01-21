@@ -11,9 +11,13 @@ jupyter: python3
 
 ## The Hype
 
+The news wires were humming this week like a cicada in summer with reports that US Industrial Production ticked up by 0.4% in December. 
+
 G'day folks! Dinki here.
 
-The news wires were humming this week like a cicada in summer with reports that US Industrial Production ticked up by 0.4% in December. It sounds decent, like finding a fresh patch of grass, but percentages without context are like a wombat without a burrow—exposed. Is this a real recovery or just a blip?
+It all sounds decent, like finding a fresh patch of grass, but percentages without context are like a wombat without a burrow—exposed. Is this a real recovery or just a blip?
+
+ Note: this is just a test post to make sure all the automated workflows are working as expected.
 
 ## The Dig
 

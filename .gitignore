@@ -210,3 +210,4 @@ __marimo__/
 /.quarto/
 **/*.quarto_ipynb
 WEEKLY_WORKFLOW.md
+ON_DEMAND_WORKFLOW.md

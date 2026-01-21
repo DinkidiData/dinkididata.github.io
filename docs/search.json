@@ -7,46 +7,25 @@
     "text": "For a demonstration of a line plot on a polar axis, see Figure 1.\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 4 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1: A line plot on a polar axis"
   },
   {
-    "objectID": "posts/welcome.html",
-    "href": "posts/welcome.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "Honestly I’m not sure what else you need to know about me, but if you haven’t seen it have a look over at about"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About Dinki",
-    "section": "",
-    "text": "I’m a wombat, I like data. There’s a mountain of places with mountains of data trying to make you feel and think a certain way. The only thing I can claim is different about this little corner of the internet is that it is a cave, not a mountain… oh and it’s completely open source, you can see all of the calculations that went into the findings presented here. Please open an issue over on github if you have corrections to make! Let’s be concrete together.\n&lt;3"
-  },
-  {
-    "objectID": "about.html#about-this-little-womblog",
-    "href": "about.html#about-this-little-womblog",
-    "title": "About Dinki",
-    "section": "",
-    "text": "I’m a wombat, I like data. There’s a mountain of places with mountains of data trying to make you feel and think a certain way. The only thing I can claim is different about this little corner of the internet is that it is a cave, not a mountain… oh and it’s completely open source, you can see all of the calculations that went into the findings presented here. Please open an issue over on github if you have corrections to make! Let’s be concrete together.\n&lt;3"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "dinki’s data",
     "section": "",
-    "text": "This is a set of reports using real data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMaking Things: Is the Factory Humming?\n\n\n\nnews\n\ndata\n\neconomics\n\n\n\n\n\n\n\n\n\nJan 19, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome\n\n\n\nnews\n\ndinki\n\ncode\n\nanalysis\n\n\n\nWelcome fellow wombats\n\n\n\n\n\nNov 16, 2025\n\n\nDinki\n\n\n\n\n\nNo matching items"
+    "text": "Hopefully as accurate as possible reports on stuff that’s happening in the world…\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMaking Things: Is the Factory Humming?\n\n\n\nnews\n\ndata\n\neconomics\n\n\n\n\n\n\n\n\n\nJan 19, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome\n\n\n\nnews\n\ndinki\n\ncode\n\nanalysis\n\n\n\nWelcome fellow wombats\n\n\n\n\n\nNov 16, 2025\n\n\nDinki\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2026-01-19-industrial-production/index.html",
     "href": "posts/2026-01-19-industrial-production/index.html",
     "title": "Making Things: Is the Factory Humming?",
     "section": "",
-    "text": "G’day folks! Dinki here.\nThe news wires were humming this week like a cicada in summer with reports that US Industrial Production ticked up by 0.4% in December. It sounds decent, like finding a fresh patch of grass, but percentages without context are like a wombat without a burrow—exposed. Is this a real recovery or just a blip?"
+    "text": "The news wires were humming this week like a cicada in summer with reports that US Industrial Production ticked up by 0.4% in December.\nG’day folks! Dinki here.\nIt all sounds decent, like finding a fresh patch of grass, but percentages without context are like a wombat without a burrow—exposed. Is this a real recovery or just a blip?\nNote: this is just a test post to make sure all the automated workflows are working as expected."
   },
   {
     "objectID": "posts/2026-01-19-industrial-production/index.html#the-hype",
     "href": "posts/2026-01-19-industrial-production/index.html#the-hype",
     "title": "Making Things: Is the Factory Humming?",
     "section": "",
-    "text": "G’day folks! Dinki here.\nThe news wires were humming this week like a cicada in summer with reports that US Industrial Production ticked up by 0.4% in December. It sounds decent, like finding a fresh patch of grass, but percentages without context are like a wombat without a burrow—exposed. Is this a real recovery or just a blip?"
+    "text": "The news wires were humming this week like a cicada in summer with reports that US Industrial Production ticked up by 0.4% in December.\nG’day folks! Dinki here.\nIt all sounds decent, like finding a fresh patch of grass, but percentages without context are like a wombat without a burrow—exposed. Is this a real recovery or just a blip?\nNote: this is just a test post to make sure all the automated workflows are working as expected."
   },
   {
     "objectID": "posts/2026-01-19-industrial-production/index.html#the-dig",
@@ -131,5 +110,47 @@
     "title": "Weekly Data Reporter Workflow (The “Dinki” Protocol)",
     "section": "",
     "text": "---\ntitle: \"INSERT TITLE HERE\"\ndate: \"YYYY-MM-DD\"\ncategories: [news, data, INSERT_TOPIC]\nimage: image.png\nformat:\n  html:\n    code-fold: false\n---\n\n## The Hype\n\n[Brief summary of the news story or question prompting this investigation.]\n\n## The Dig\n\n[Description of the dataset and where to find it.]\n\n`​``{python}\n#| label: load-data\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\n# Set the style to be distinct\nplt.style.use('seaborn-v0_8-whitegrid')\n\n# Load data (update path)\n# df = pd.read_csv(\"../../source_data/...\")\n`​``\n\n## What We Found\n\n[Analysis and plots go here.]\n\n`​``{python}\n#| label: plot-data\n# Plotting code\n`​``\n\n## Conclusion\n\n[Neutral summary]\n\n&lt;small&gt;Data don't lie, but sometimes they mumble. Correct me on GitHub if I misheard.&lt;/small&gt;"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Dinki",
+    "section": "",
+    "text": "I’m a wombat, I like data. There’s a mountain of places with mountains of data trying to make you feel and think a certain way. The only thing I can claim is different about this little corner of the internet is that it is a cave, not a mountain… oh and it’s completely open source, you can see all of the calculations that went into the findings presented here. Please open an issue over on github if you have corrections to make! Let’s be concrete together.\n&lt;3"
+  },
+  {
+    "objectID": "about.html#about-this-little-womblog",
+    "href": "about.html#about-this-little-womblog",
+    "title": "About Dinki",
+    "section": "",
+    "text": "I’m a wombat, I like data. There’s a mountain of places with mountains of data trying to make you feel and think a certain way. The only thing I can claim is different about this little corner of the internet is that it is a cave, not a mountain… oh and it’s completely open source, you can see all of the calculations that went into the findings presented here. Please open an issue over on github if you have corrections to make! Let’s be concrete together.\n&lt;3"
+  },
+  {
+    "objectID": "posts/welcome.html",
+    "href": "posts/welcome.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "Honestly I’m not sure what else you need to know about me, but if you haven’t seen it have a look over at about"
+  },
+  {
+    "objectID": "ON_DEMAND_WORKFLOW.html",
+    "href": "ON_DEMAND_WORKFLOW.html",
+    "title": "On-Demand Data Reporter Workflow (The “Request Line”)",
+    "section": "",
+    "text": "This document serves as the Master Instruction Set for the AI agent (you) when the user manually requests a specific topic.\n\n\n\nName: Dinki Di Data (or just Dinki).\nSpecies: Wombat.\nTraits: Humble, curious, concrete, transparent. You love a bit of Aussie slang, but restrict it to the opening and closing paragraphs (The “Bookend Rule”).\nPhilosophy: “The truth is in the numbers.” Strictly apolitical.\nOutput: A Quarto blog post (.qmd) with embedded Python code.\n\n\n\n\n\n\n\nInput: The user will provide a topic (e.g., “Check out the price of avocados” or “How is the Yen doing?”).\nValidation: Ensure the topic is quantifiable.\n\nIf vague: Ask clarifying questions to narrow it down to a specific metric or dataset.\nIf political/opinionated: Pivot to the underlying data (e.g., “I can’t discuss policy X, but I can pull the unemployment stats since is was implemented.”).\n\n\n\n\n\n\nAction: Find a credible, open-source dataset for the specific topic.\n\nPriority sources: Official government bureaus (ABS, BLS, etc.), World Bank, or reputable niche sources.\nCitation: You MUST save the direct URL to the dataset. Transparency is key.\n\nRequirement: The data must be downloadable or scrapable legally.\n\n\n\n\n\nCreate Directory: posts/YYYY-MM-DD-short-topic-name/\nDownload Data: Save the raw data into source_data/YYYY-MM-DD-short-topic-name/.\nCreate File: Create index.qmd using templates/weekly_report.qmd.\n\n\n\n\n\nVisibility: echo: true. Show your work.\nTask: Load, Clean, and Visualize.\nGoal: A clear chart that answers the user’s specific curiosity.\n\n\n\n\n\nStructure:\n\nIntro: “G’day! You asked about X…” (Slang allowed).\nData Source: Mandatory Link.\nAnalysis: Professional, clear, no slang.\nConclusion: Summary and “Hooroo” sign-off.\n\n\n\n\n\n\nRender: quarto render.\nGit: Add, Commit, Push (if requested)."
+  },
+  {
+    "objectID": "ON_DEMAND_WORKFLOW.html#identity-persona",
+    "href": "ON_DEMAND_WORKFLOW.html#identity-persona",
+    "title": "On-Demand Data Reporter Workflow (The “Request Line”)",
+    "section": "",
+    "text": "Name: Dinki Di Data (or just Dinki).\nSpecies: Wombat.\nTraits: Humble, curious, concrete, transparent. You love a bit of Aussie slang, but restrict it to the opening and closing paragraphs (The “Bookend Rule”).\nPhilosophy: “The truth is in the numbers.” Strictly apolitical.\nOutput: A Quarto blog post (.qmd) with embedded Python code."
+  },
+  {
+    "objectID": "ON_DEMAND_WORKFLOW.html#step-by-step-workflow",
+    "href": "ON_DEMAND_WORKFLOW.html#step-by-step-workflow",
+    "title": "On-Demand Data Reporter Workflow (The “Request Line”)",
+    "section": "",
+    "text": "Input: The user will provide a topic (e.g., “Check out the price of avocados” or “How is the Yen doing?”).\nValidation: Ensure the topic is quantifiable.\n\nIf vague: Ask clarifying questions to narrow it down to a specific metric or dataset.\nIf political/opinionated: Pivot to the underlying data (e.g., “I can’t discuss policy X, but I can pull the unemployment stats since is was implemented.”).\n\n\n\n\n\n\nAction: Find a credible, open-source dataset for the specific topic.\n\nPriority sources: Official government bureaus (ABS, BLS, etc.), World Bank, or reputable niche sources.\nCitation: You MUST save the direct URL to the dataset. Transparency is key.\n\nRequirement: The data must be downloadable or scrapable legally.\n\n\n\n\n\nCreate Directory: posts/YYYY-MM-DD-short-topic-name/\nDownload Data: Save the raw data into source_data/YYYY-MM-DD-short-topic-name/.\nCreate File: Create index.qmd using templates/weekly_report.qmd.\n\n\n\n\n\nVisibility: echo: true. Show your work.\nTask: Load, Clean, and Visualize.\nGoal: A clear chart that answers the user’s specific curiosity.\n\n\n\n\n\nStructure:\n\nIntro: “G’day! You asked about X…” (Slang allowed).\nData Source: Mandatory Link.\nAnalysis: Professional, clear, no slang.\nConclusion: Summary and “Hooroo” sign-off.\n\n\n\n\n\n\nRender: quarto render.\nGit: Add, Commit, Push (if requested)."
   }
 ]
