@@ -1,0 +1,168 @@
+---
+title: "The Immigration Question"
+date: "2026-02-06"
+categories: [economics, immigration, ABS]
+image: image.png
+format:
+  html:
+    code-fold: false
+jupyter: python3
+---
+
+## G'day Mates!
+
+Dinki here. Today we're tackling a big one: immigration. I've heard the chatter down at the billabong—"without new folks, the economy would go belly up!" Is it true, or just a load of old cobblers? Let's have a sqiz at the numbers.
+
+## The Dig
+
+We're pulling straight from the ABS. No messing about.
+**Data Sources**:
+- [Australian National Accounts: National Income, Expenditure and Product](https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-national-income-expenditure-and-product/sep-2025)
+- [National, state and territory population](https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/jun-2025)
+
+```{python}
+#| label: setup
+#| include: false
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from datetime import datetime
+
+# Dinki Style
+sns.set_theme(style="whitegrid")
+```
+
+```{python}
+#| label: analysis
+#| echo: true
+
+# Load GDP Data
+# 5206002_Expenditure_Volume_Measures.xlsx, Table 2
+path_gdp = "../../source_data/2026-02-06-immigration-economy/5206002_Expenditure_Volume_Measures.xlsx"
+path_pop = "../../source_data/2026-02-06-immigration-economy/310101.xlsx"
+
+def get_abs_series(path, sheet_name, keyword):
+    # Read metadata rows (0-9)
+    df_meta = pd.read_excel(path, sheet_name=sheet_name, header=None, nrows=10)
+    
+    # search for keyword in the first few rows (usually row 0 has the description)
+    target_col_idx = None
+    found_desc = ""
+    
+    for col in df_meta.columns:
+        # Check first row specifically as it contains the main description
+        desc = str(df_meta.iloc[0, col])
+        if keyword.lower() in desc.lower():
+            target_col_idx = col
+            found_desc = desc
+            break
+            
+    if target_col_idx is None:
+        # Fallback: search all rows
+        for col in df_meta.columns:
+            if df_meta[col].astype(str).str.contains(keyword, case=False).any():
+                target_col_idx = col
+                break
+    
+    if target_col_idx is None:
+        raise ValueError(f"Keyword '{keyword}' not found in {path}")
+        
+    print(f"Found '{keyword}' in column {target_col_idx}: {found_desc}")
+    
+    # Get Series ID from row 9
+    series_id = df_meta.iloc[9, target_col_idx]
+    
+    # Read full data
+    # Header=9 means row 9 is the header (Series IDs)
+    df = pd.read_excel(path, sheet_name=sheet_name, header=9, index_col=0, parse_dates=True)
+    
+    return df[series_id]
+
+# GDP: "Gross domestic product" (in Table 2 this will be the Level)
+gdp_series = get_abs_series(path_gdp, 'Data1', "Gross domestic product")
+
+# Population: "Estimated Resident Population (ERP) ;  Australia"
+pop_series = get_abs_series(path_pop, 'Data1', "Estimated Resident Population (ERP) ;  Australia")
+
+# Merge
+df = pd.DataFrame()
+df['Real GDP'] = gdp_series
+df['Population'] = pop_series
+
+# GDP is usually Quarterly, Pop is usually Quarterly.
+# Drop NaNs
+df = df.dropna()
+
+# Calculate GDP per Capita
+df['GDP per Capita'] = df['Real GDP'] / df['Population']
+
+# Index to 100 for proper comparison
+# Let's start from a reasonable timeframe, say year 2000 if available, or just start of data
+start_date = '2000-01-01'
+if start_date in df.index:
+    df = df.loc[start_date:]
+else:
+    # If data implies earlier, just use what we have, but ensuring overlap.
+    pass
+
+base_gdp = df['Real GDP'].iloc[0]
+base_capita = df['GDP per Capita'].iloc[0]
+
+df['GDP Index'] = (df['Real GDP'] / base_gdp) * 100
+df['GDP per Capita Index'] = (df['GDP per Capita'] / base_capita) * 100
+
+display(df.tail())
+```
+
+## What We Found
+
+```{python}
+#| label: visualization
+#| echo: true
+
+plt.figure(figsize=(12, 6))
+sns.lineplot(data=df[['GDP Index', 'GDP per Capita Index']], linewidth=2.5)
+plt.title('Australia: Real GDP vs GDP per Capita (Index 2000 = 100)', fontsize=16)
+plt.ylabel('Index', fontsize=12)
+plt.xlabel('Year', fontsize=12)
+plt.legend(['Real GDP (Total Size)', 'GDP per Capita (Individual Share)'])
+
+# Add annotation for COVID
+plt.axvline(x=datetime(2020, 3, 1), color='red', linestyle='--', alpha=0.5)
+plt.text(datetime(2020, 3, 1), df['GDP Index'].max(), ' COVID-19', color='red', verticalalignment='top')
+
+plt.tight_layout()
+plt.show()
+
+# Quick CAGR calc
+start_val = df['GDP Index'].iloc[0]
+end_val = df['GDP Index'].iloc[-1]
+years = (df.index[-1] - df.index[0]).days / 365.25
+cagr_gdp = (end_val / start_val)**(1/years) - 1
+
+start_cap = df['GDP per Capita Index'].iloc[0]
+end_cap = df['GDP per Capita Index'].iloc[-1]
+cagr_cap = (end_cap / start_cap)**(1/years) - 1
+
+print(f"Annual Growth Rate (GDP): {cagr_gdp:.2%}")
+print(f"Annual Growth Rate (GDP per Capita): {cagr_cap:.2%}")
+```
+
+The blue line—Total GDP—is rocketing up. That's the "economy growing". But the orange line—your share of the pie—is growing much slower. In fact, in recent years (post-COVID), you can see the per-capita growth has flattened or even dipped, while the total GDP kept chugging along (mostly).
+
+This implies that a huge chunk of our "economic growth" is just... more people. Not necessarily more productivity or wealth per person.
+
+## Conclusion
+
+So, would the economy collapse without immigration? Typical economist answer: "It depends what you mean by economy."
+If you mean **Total GDP**, then yeah, it would likely shrink or stall given our aging workforce.
+But if you mean **Living Standards (GDP per Capita)**, the picture is murky. The data shows we aren't getting individually richer at the same rate the country is.
+
+Immigration keeps the *aggregate* numbers looking shiny, but for the average punter, it's a bit of a slower ride.
+
+What do you reckon? Is there a way I can improve this analysis? Head over to [GitHub](https://github.com/dinkididata/dinkididata.github.io/issues/) and let me know.
+
+Hooroo!
+
+<small>Found a bug in my burrow? Report it on [GitHub](https://github.com/dinkididata/dinkididata.github.io/issues/).</small>
